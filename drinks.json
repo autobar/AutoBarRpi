@@ -1,0 +1,89 @@
+{
+    "drinks": [
+        {
+            "name": "Screwdriver",
+            "liquors": {
+                "vodka": 2
+            },
+            "mixers": {
+                "orange juice": 5
+            }
+        },
+        {
+            "name": "Jack and Coke",
+            "liquors": {
+                "jack daniels": 1
+            },
+            "mixers":{
+                "coke": 6
+            }
+        },
+        {
+            "name": "Coke and Rum",
+            "liquors": {
+                "rum": 3
+            },
+            "mixers":{
+                "coke": 4
+            }
+        },
+        {
+            "name": "Limey Dream",
+            "liquors": {
+                "vodka": 1
+            },
+            "mixers":{
+                "sprite": 3,
+                "lime juice": 3
+            }
+        },
+        {
+            "name": "Gin and Tonic",
+            "liquors": {
+                "gin": 2
+            },
+            "mixers":{
+                "tonic water": 2,
+                "lime juice": 3
+            }
+        },
+        {
+            "name": "Vodka and Tonic Water",
+            "liquors": {
+                "vodka": 2
+            },
+            "mixers":{
+                "tonic water": 5
+            }
+        },
+        {
+            "name": "Moscow Rule",
+            "liquors": {
+                "vodka": 2
+            },
+            "mixers":{
+                "ginger beer": 2,
+                "lime juice": 3
+            }
+        },
+        {
+            "name": "Mimosa",
+            "liquors": {
+                "champagne": 2
+            },
+            "mixers":{
+                "orange juice": 5
+            }
+        },
+        {
+            "name": "White Russian",
+            "liquors": {
+                "vodka": 2
+            },
+            "mixers":{
+                "coffee": 3,
+                "cream": 2
+            }
+        }
+    ]
+}
