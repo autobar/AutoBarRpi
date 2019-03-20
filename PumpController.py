@@ -26,7 +26,7 @@ class PumpController(object):
         io.setwarnings(False)
 
         # initialize GPIO pins
-        for name, pin in pin_map.iteritems():
+        for name, pin in self.pin_map.iteritems():
             io.setup(pin, io.OUT)
             io.output(pin, io.LOW)
 
@@ -37,10 +37,10 @@ class PumpController(object):
 
         # make sure that the pump_name is actually in the range of valid 
         # pump numbers
-        if pin_map.get(pump_name) == None:
+        if self.pin_map.get(pump_name) == None:
             raise Exception('invalid pump name accessed')
 
-        io.output(pin_map[pump_name], io.HIGH)
+        io.output(self.pin_map[pump_name], io.HIGH)
         time.sleep(amount_of_liquid * SECS_PER_OZ)
-        io.output(pin_map[pump_name], io.LOW)
+        io.output(self.pin_map[pump_name], io.LOW)
 
