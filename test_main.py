@@ -1,4 +1,4 @@
-import PumpController
+from PumpController import PumpController
 
 # first create the dictionary of the ingredients/pins
 ingredients = {
