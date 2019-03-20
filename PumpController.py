@@ -12,7 +12,7 @@ class PumpController:
                  to each of the relays controlling the pumps
     '''
 
-    def __init__(self, pin_list=[]):
+    def __init__(self, pin_list={}):
         if not pin_list:
             raise Exception('pin_list cannot be an empty list')
         self.pin_map = pin_list
