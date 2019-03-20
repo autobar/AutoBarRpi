@@ -1,20 +1,13 @@
-from flask import Flask
-from flask_ask import Ask, statement
- 
-app = Flask(__name__)
-ask = Ask(app, '/')
- 
-@ask.intent('LedIntent')
-def led(color, status):
-  if color.lower() not in pins.keys():
-    print("I don't have {} light".format(color))
-    return statement("I don't have {} light".format(color)) 
-  print('Turning the {} light {}'.format(color, status))
-  return statement('Turning the {} light {}'.format(color, status))
- 
-if __name__ == '__main__':
-  try:
-    pins = {'red':9, 'yellow':10, 'green':11}
-    app.run(debug=True)
-  finally:
-    print("done.")
+import PumpController
+
+# first create the dictionary of the ingredients/pins
+ingredients = {
+  'vodka'  :  3,
+  'rum'    :  5,
+  'tequila':  7,
+  'water'  : 11,
+  'juice'  : 13,
+  'other'  : 15
+}
+
+pump = PumpController(ingredients)
