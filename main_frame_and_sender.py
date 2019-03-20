@@ -31,22 +31,20 @@ PARAMS = "/"
 # then extracting data in json format 
 
 PC = PumpController()
-PC.pin_list["vodka"] = vodka_pin
-PC.pin_list["jack daniels"] = jack_daniels_pin
-PC.pin_list["rum"] = rum_pin
-PC.pin_list["gin"] = gin_pin
+PC.pin_map ["vodka"] = vodka_pin
+PC.pin_map ["jack daniels"] = jack_daniels_pin
+PC.pin_map ["rum"] = rum_pin
+PC.pin_map ["gin"] = gin_pin
 
-PumpController vodka
-PumpController jack_daniels
-PumpController rum
-PumpController gin
-
-PumpController sprite
-PumpController lime_juice
-PumpController tonic_water
-PumpController ginger_beer
-PumpController orange_juice
+PC.pin_map ["sprite"] = sprite_pin
+PC.pin_map ["lime_juice"] = lime_juice_pin
+PC.pin_map ["tonic_water"] = tonic_water_pin
+PC.pin_map ["ginger_beer"] = ginger_beer_pin
+PC.pin_map ["orange_juice"] = orange_juice_pin
 
 while true:
 	r = requests.get(url = URL, params = PARAMS) 
-	data = r.json() 
+	data = r.json()
+	#using a call back function here in the future to speed up the process
+	for key, value in data["ingredients"].items():
+		PC.pump_mL(key,value)
