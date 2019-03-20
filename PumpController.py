@@ -41,6 +41,6 @@ class PumpController(object):
             raise Exception('invalid pump name accessed')
 
         io.output(self.pin_map[pump_name], io.HIGH)
-        time.sleep(amount_of_liquid * SECS_PER_OZ)
+        time.sleep(amount_of_liquid * self.SECS_PER_OZ)
         io.output(self.pin_map[pump_name], io.LOW)
 
