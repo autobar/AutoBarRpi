@@ -17,7 +17,7 @@ class PumpController(object):
     '''
 
     def __init__(self, pin_dict={}):
-        if not pin_list:
+        if not pin_dict:
             raise Exception('pin_dict cannot be an empty dict')
         self.pin_map = pin_dict
 
