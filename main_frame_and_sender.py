@@ -1,6 +1,6 @@
 # importing the requests library 
-import requests 
-import PumpController
+import requests
+#import PumpController
   
 '''
 
@@ -21,15 +21,19 @@ which allow replace pump's corresponding drink
 '''
 
 # api-endpoint 
-URL = "i.am.a.AWS.server.for.auto.bar"
+URL = "https://auto-bar.herokuapp.com/orders.json"
+# defining a params dict for the parameters to be sent to the API
 
-# defining a params dict for the parameters to be sent to the API 
-PARAMS = "/orders.json"
 # assume request all
   
 # sending get request and saving the response as response object 
 # then extracting data in json format 
 
+r = requests.get(url = URL) 
+data = r.json()
+print(data)
+
+'''
 PC = PumpController()
 PC.pin_map ["vodka"] = vodka_pin
 PC.pin_map ["jack daniels"] = jack_daniels_pin
@@ -42,9 +46,11 @@ PC.pin_map ["tonic_water"] = tonic_water_pin
 PC.pin_map ["ginger_beer"] = ginger_beer_pin
 PC.pin_map ["orange_juice"] = orange_juice_pin
 
+
 while true:
 	r = requests.get(url = URL, params = PARAMS) 
 	data = r.json()
 	#using a call back function here in the future to speed up the process
 	for key, value in data["ingredients"].items():
 		PC.pump_mL(key,value)
+'''
