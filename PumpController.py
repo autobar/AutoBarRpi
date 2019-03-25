@@ -4,7 +4,7 @@ import time
 class PumpController(object):
 
     ''' Constants: '''
-    SECS_PER_ML = 1 # this needs to be calculated experimentally
+    SECS_PER_OZ = 10 # this needs to be calculated experimentally
 
     '''
     Attributes:
@@ -30,7 +30,7 @@ class PumpController(object):
             io.setup(pin, io.OUT)
             io.output(pin, io.LOW)
 
-    def pump_mL(self, pump_name, amount_of_liquid):
+    def pump_oz(self, pump_name, amount_of_liquid):
         # make sure that parameters are correct types
         pump_name = str(pump_name)
         amount_of_liquid = int(amount_of_liquid)
@@ -41,6 +41,6 @@ class PumpController(object):
             raise Exception('invalid pump name accessed')
 
         io.output(self.pin_map[pump_name], io.HIGH)
-        time.sleep(amount_of_liquid * self.SECS_PER_ML)
+        time.sleep(amount_of_liquid * self.SECS_PER_OZ)
         io.output(self.pin_map[pump_name], io.LOW)
 

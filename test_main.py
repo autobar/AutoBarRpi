@@ -15,7 +15,7 @@ def main():
   pump = PumpController(ingredients)
 
   # try pumping 20 mL worth of vodka
-  pump.pump_mL('vodka', 20)
+  pump.pump_oz('vodka', 2)
   print 'pumping complete'
 
 
