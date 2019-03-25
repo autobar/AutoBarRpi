@@ -24,7 +24,7 @@ which allow replace pump's corresponding drink
 URL = "i.am.a.AWS.server.for.auto.bar"
 
 # defining a params dict for the parameters to be sent to the API 
-PARAMS = "/"
+PARAMS = "/orders.json"
 # assume request all
   
 # sending get request and saving the response as response object 
