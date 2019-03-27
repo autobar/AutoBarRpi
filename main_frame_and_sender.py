@@ -1,18 +1,20 @@
 # importing the requests library 
 import requests
-#import PumpController
-  
+from PumpController import PumpController 
+ingredients = {
+    'vodka'  :  7,
+    "jack daniels": 11,
+    'rum'    :  13,
+    'tequila':  15,
+    "gin"    :  17,
+    'water'  : 19,
+    'lime_juice'  : 21,
+    'tonic_water'  : 23,
+    'ginger_beer'  : 27,
+    'orange_juice'  : 29,
+    'sprite'  : 31
+  }
 '''
-
-define all pin map here
-
-in formate of 
-vodka_pin
-rum_pin
-etc.
-
-or not
-
 this is a set version(assuming each pump will only be using to pump single drink)
 
 future adaption will add more functionality to the GET json
@@ -29,28 +31,29 @@ URL = "https://auto-bar.herokuapp.com/orders.json"
 # sending get request and saving the response as response object 
 # then extracting data in json format 
 
-r = requests.get(url = URL) 
-data = r.json()
-print(data)
+#r = requests.get(url = URL) 
+#data = r.json()
+data =  {\
+            "name": "Screwdriver",\
+            "liquors": {\
+                "vodka": 2\
+            },\
+            "mixers": {\
+                "orange juice": 5\
+            }\
+        }
+
+
+PC = PumpController(ingredients)
+
+for key, value in data["ingredients"].items():
+    PC.pump_oz(key,value)
 
 '''
-PC = PumpController()
-PC.pin_map ["vodka"] = vodka_pin
-PC.pin_map ["jack daniels"] = jack_daniels_pin
-PC.pin_map ["rum"] = rum_pin
-PC.pin_map ["gin"] = gin_pin
-
-PC.pin_map ["sprite"] = sprite_pin
-PC.pin_map ["lime_juice"] = lime_juice_pin
-PC.pin_map ["tonic_water"] = tonic_water_pin
-PC.pin_map ["ginger_beer"] = ginger_beer_pin
-PC.pin_map ["orange_juice"] = orange_juice_pin
-
-
 while true:
-	r = requests.get(url = URL, params = PARAMS) 
-	data = r.json()
-	#using a call back function here in the future to speed up the process
-	for key, value in data["ingredients"].items():
-		PC.pump_mL(key,value)
+    r = requests.get(url = URL, params = PARAMS) 
+    data = r.json()
+    #using a call back function here in the future to speed up the process
+    for key, value in data["ingredients"].items():
+        PC.pump_mL(key,value)
 '''
