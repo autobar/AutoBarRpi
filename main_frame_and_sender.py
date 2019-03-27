@@ -2,17 +2,12 @@
 import requests
 from PumpController import PumpController 
 ingredients = {
-    'vodka'  :  7,
-    "jack daniels": 11,
-    'rum'    :  13,
-    'tequila':  15,
-    "gin"    :  17,
-    'water'  : 19,
-    'lime_juice'  : 21,
-    'tonic_water'  : 23,
-    'ginger_beer'  : 27,
-    'orange_juice'  : 29,
-    'sprite'  : 31
+    'vodka'  :  3,
+    "jack daniels": 5,
+    'rum'    :  7,
+    'ginger beer'  : 11,
+    'orange juice'  : 13,
+    'sprite'  : 15
   }
 '''
 this is a set version(assuming each pump will only be using to pump single drink)
@@ -33,22 +28,24 @@ URL = "https://auto-bar.herokuapp.com/orders.json"
 
 #r = requests.get(url = URL) 
 #data = r.json()
-data =  {\
-            "name": "Screwdriver",\
-            "liquors": {\
-                "vodka": 2\
-            },\
-            "mixers": {\
-                "orange juice": 5\
-            }\
+data =  {
+            "name": "Screwdriver",
+            "liquors": {
+                "vodka": 2
+            },
+            "mixers": {
+                "orange juice": 5
+            }
         }
 
-
+print("PC instance")
 PC = PumpController(ingredients)
-
-for key, value in data["ingredients"].items():
+print("liquors:");
+for key, value in data["liquors"].items():
     PC.pump_oz(key,value)
-
+print("mixers:");
+for key, value in data["mixers"].items():
+    PC.pump_oz(key,value)
 '''
 while true:
     r = requests.get(url = URL, params = PARAMS) 

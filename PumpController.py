@@ -22,6 +22,7 @@ class PumpController(object):
         self.pin_map = pin_dict
 
         # set up the RPi.GPIO stuff
+        #io.setmode(io.BOARD)
         io.setmode(io.BOARD)
         io.setwarnings(False)
 
