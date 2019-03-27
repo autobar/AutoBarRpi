@@ -48,9 +48,13 @@ for key, value in data["mixers"].items():
     PC.pump_oz(key,value)
 '''
 while true:
-    r = requests.get(url = URL, params = PARAMS) 
+    r = requests.get(url = URL) 
     data = r.json()
     #using a call back function here in the future to speed up the process
-    for key, value in data["ingredients"].items():
-        PC.pump_mL(key,value)
+    for key, value in data["liquors"].items():
+        PC.pump_oz(key,value)
+    print("mixers:");
+    for key, value in data["mixers"].items():
+        PC.pump_oz(key,value)
+
 '''
