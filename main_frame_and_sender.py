@@ -6,13 +6,13 @@ ingredients = {
     "jack daniels": 11,
     'rum'    :  13,
     'tequila':  15,
-    "gin"    :  17,
-    'water'  : 19,
-    'lime_juice'  : 21,
-    'tonic_water'  : 23,
-    'ginger_beer'  : 27,
-    'orange_juice'  : 29,
-    'sprite'  : 31
+    "gin"    :  19,
+    'water'  : 21,
+    'lime_juice'  : 23,
+    'tonic_water'  : 29,
+    'ginger_beer'  : 31,
+    'orange_juice'  : 33,
+    'sprite'  : 35
   }
 '''
 this is a set version(assuming each pump will only be using to pump single drink)
