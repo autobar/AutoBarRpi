@@ -1,6 +1,7 @@
 # importing the requests library 
 import requests
 from PumpController import PumpController 
+from readDL import readDL
 ingredients = {
     'vodka'  :  7,
     "jack daniels": 11,
@@ -34,10 +35,15 @@ PC = PumpController(ingredients)
 
 while true:
     r = requests.get(url = URL) 
-    data = r.json()
-    #using a call back function here in the future to speed up the process
-    for key, value in data["liquors"].items():
-        PC.pump_oz(key,value)    
-    for key, value in data["mixers"].items():
-        PC.pump_oz(key,value)
+    datas = r.json()
+    while true:
+        a = readDL()
+        if a["ID"] == r[0]
+            if a["BirthDay"] >= 19980417
+                break
+    for data in datas
+        for key, value in data["liquors"].items():
+            PC.pump_oz(key,value)    
+        for key, value in data["mixers"].items():
+            PC.pump_oz(key,value)
     
