@@ -1,60 +1,45 @@
-# importing the requests library 
+#!/usr/bin/python
+#from readDL import readDL
 import requests
+import json
 from PumpController import PumpController 
 ingredients = {
-    'vodka'  :  3,
-    "jack daniels": 5,
-    'rum'    :  7,
-    'ginger beer'  : 11,
-    'orange juice'  : 13,
-    'sprite'  : 15
+    'vodka'  :  33,
+    "jack daniels": 35,
+    'rum'    :  37,
+    'lime_juice'  : 36,
+    'tonic_water'  : 38,
+    'ginger_beer'  : 40,
   }
-'''
-this is a set version(assuming each pump will only be using to pump single drink)
-
-future adaption will add more functionality to the GET json
-which allow replace pump's corresponding drink
-
-'''
-
-# api-endpoint 
 URL = "https://auto-bar.herokuapp.com/orders.json"
-# defining a params dict for the parameters to be sent to the API
-
-# assume request all
-  
-# sending get request and saving the response as response object 
-# then extracting data in json format 
-
-#r = requests.get(url = URL) 
-#data = r.json()
-data =  {
-            "name": "Screwdriver",
-            "liquors": {
-                "vodka": 2
-            },
-            "mixers": {
-                "orange juice": 5
-            }
-        }
-
-print("PC instance")
 PC = PumpController(ingredients)
-print("liquors:");
-for key, value in data["liquors"].items():
-    PC.pump_oz(key,value)
-print("mixers:");
-for key, value in data["mixers"].items():
-    PC.pump_oz(key,value)
-'''
-while true:
-    r = requests.get(url = URL) 
-    data = r.json()
-    #using a call back function here in the future to speed up the process
-    for key, value in data["liquors"].items():
-        PC.pump_oz(key,value)
-    print("mixers:");
-    for key, value in data["mixers"].items():
-        PC.pump_oz(key,value)
+#signal.signal(signal.SIGALRM, handler)
 
+while True:
+    r = requests.get(url = URL)
+    print(r.content)
+    datas = json.loads(r.content)
+    #while true:
+        #a = readDL()
+        #if a["ID"] == r[0]["drivers_license"]:
+            #if a["BirthDay"] >= 19980417:
+                #break
+        #continue
+    for data in datas[1:]:
+        for key, value in data["liquors"].items():
+            PC.pump_oz(key,value)    
+        for key, value in data["mixers"].items():
+            PC.pump_oz(key,value)
+
+'''
+datas = [{'mixers': {'tonic_water': 1},
+          'liquors': {'vodka': 2,
+                      'rum': 2}}]
+
+for data in datas:
+        for key, value in data["liquors"].items():
+            PC.pump_oz(key,value)    
+        for key, value in data["mixers"].items():
+            PC.pump_oz(key,value)
+            
 '''
