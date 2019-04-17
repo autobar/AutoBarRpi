@@ -38,10 +38,10 @@ while true:
     datas = r.json()
     while true:
         a = readDL()
-        if a["ID"] == r[0]
+        if a["ID"] == r[0]["drivers_license"]
             if a["BirthDay"] >= 19980417
                 break
-    for data in datas
+    for data in datas[1:]
         for key, value in data["liquors"].items():
             PC.pump_oz(key,value)    
         for key, value in data["mixers"].items():
