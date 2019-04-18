@@ -34,9 +34,12 @@ def main():
 
   while True:
     if test:
-      for pump_no, amount in test_order.items():
-        pump.pump_oz(pump_no, amount, motor)
-      motor.turn()
+      # make the same drink 3 times
+      for _ in range(3):
+        for pump_no, amount in test_order.items():
+          pump.pump_oz(pump_no, amount, motor)
+        motor.turn()
+      break
     else:
       # get the drink orders from the web app
       response = requests.get(url=URL)
