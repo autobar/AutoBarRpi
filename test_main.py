@@ -68,7 +68,7 @@ def main():
       if not is_overage(user_dob):
         print('Underage user: drink order canceled')
         continue
-      elif user_id != user['drivers_licesne']:
+      elif user_id != user['drivers_license']:
         print('This drivers license was not used to order this drink')
         continue
 
