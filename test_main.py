@@ -8,6 +8,12 @@ import datetime
 from Controllers import PumpController
 from Controllers import MotorController
 
+# returns a Boolean of whether the user is over 21 or not
+def is_overage(dob):
+  # calculate the minimum DOB that a user must have to work
+  min_date = datetime.datetime.now() - relativedelta(years=21)
+  return dob < min_date
+
 def main():
   # first create the dictionary of the ingredients/pins
   ingredients = {
@@ -55,15 +61,13 @@ def main():
       user_input = str(raw_input('Enter DL: '))
       regex = re.compile(r'(?P<ID>\d{8})=\d{4}(?P<Birth_day>\d{8})')
       user_id, user_dob = regex.findall(user_input)[0]
-
-      # today's date
-      min_date = datetime.datetime.now() - relativedelta(years=21)
-      
-      # first test the year
       user_dob = datetime.datetime.strptime(user_dob, '%Y%m%d')
 
-      if user_dob > min_date:
+      if not is_overage(user_dob):
         print('Underage user: drink order canceled')
+        continue
+      elif user_id != user['ID']:
+        print('This drivers license was not used to order this drink')
         continue
 
       # for each drink in the response
