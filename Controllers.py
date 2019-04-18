@@ -90,8 +90,9 @@ class MotorController(object):
         time.sleep(0.5)
         io.output(self.tx_pin, io.LOW)
 
-        # do not return until the PiC says we can, or 5 secs pass
-        io.wait_for_edge(self.rx_pin, io.GPIO_RISING, timeout=5000)
+        # do not return until the PiC says we can
+        while not io.input(self.rx_pin):
+            pass
         return True
 
     # tell the motor to stop turning
