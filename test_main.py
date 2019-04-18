@@ -39,8 +39,9 @@ def main():
       motor.turn()
     else:
       # TODO: handle case where there is no JSON to parse on second line
-      while (response = requests.get(url=URL)) is '':
-        pass
+      response = requests.get(url=URL)
+      while response is '':
+        response = requests.get(url=URL)
       data = json.loads(response.content)
 
     # validate that the user is overage
