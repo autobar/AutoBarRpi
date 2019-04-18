@@ -63,6 +63,8 @@ def main():
       user_id, user_dob = regex.findall(user_input)[0]
       user_dob = datetime.datetime.strptime(user_dob, '%Y%m%d')
 
+      print(str(user))
+
       if not is_overage(user_dob):
         print('Underage user: drink order canceled')
         continue
