@@ -3,6 +3,8 @@
 import requests
 import json
 import re
+from dateutil.relativedelta import relativedelta
+import datetime
 from Controllers import PumpController
 from Controllers import MotorController
 
@@ -50,13 +52,19 @@ def main():
 
       # validate that the user is overage
       user = data[0]
-      print(str(user))
       user_input = str(raw_input('Enter DL: '))
       regex = re.compile(r'(?P<ID>\d{8})=\d{4}(?P<Birth_day>\d{8})')
       user_id, user_dob = regex.findall(user_input)[0]
-      print str(user_id)
-      print str(user_dob)
-      input()
+
+      # today's date
+      min_date = datetime.datetime.now() - relativedelta(years=21)
+      
+      # first test the year
+      user_dob = datetime.datetime.strptime(user_dob, '%Y%m%d')
+
+      if user_dob > min_date:
+        print('Underage user: drink order canceled')
+        continue
 
       # for each drink in the response
       for drink in data[1:]:
