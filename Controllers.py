@@ -31,12 +31,7 @@ class PumpController(object):
             io.setup(pin, io.OUT, io.PUD_DOWN)
             io.output(pin, io.LOW)
 
-    def pump_oz(self, pump_name, amount_of_liquid, motor=None):
-        # under test: try to force the motor off
-        if motor is not None:
-            if motor.tx_pin is not None:
-                io.output(motor.tx_pin, io.LOW)
-
+    def pump_oz(self, pump_name, amount_of_liquid):
         # make sure that parameters are correct types
         pump_name = str(pump_name)
         amount_of_liquid = int(amount_of_liquid)
@@ -102,4 +97,12 @@ class MotorController(object):
         # do not return until the PiC says we can
         while (io.input(self.rx_pin) == io.LOW):
             pass
+        return True
+
+    # tell the motor to stop turning
+    def stop(self):
+        if self.tx_pin is None:
+            raise Exception("No valid TX pin has been set")
+        
+        io.output(self.tx_pin, io.LOW)
         return True

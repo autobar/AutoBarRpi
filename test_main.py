@@ -33,11 +33,12 @@ def main():
   URL = 'https://auto-bar.herokuapp.com/orders.json'
 
   while True:
+    motor.stop()
     if test:
       # make the same drink 3 times
       for _ in range(3):
         for pump_no, amount in test_order.items():
-          pump.pump_oz(pump_no, amount, motor)
+          pump.pump_oz(pump_no, amount)
         motor.turn()
       break
     else:
@@ -55,7 +56,7 @@ def main():
       for drink in data[1:]:
         # pump each of the liquids
         for pump_no, amount in drink.items():
-          pump.pump_oz(pump_no, amount, motor)
+          pump.pump_oz(pump_no, amount)
         
         # finally, rotate the platter
         motor.turn()
