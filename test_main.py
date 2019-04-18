@@ -1,11 +1,17 @@
 #!/usr/bin/python
 
+import RPi.GPIO as io
+import time
 import requests
 import json
 from Controllers import PumpController
 from Controllers import MotorController
 
 def main():
+  # set up the RPi.GPIO stuff
+  io.setmode(io.BOARD)
+  io.setwarnings(False)
+  
   # first create the dictionary of the ingredients/pins
   ingredients = {
     '1': 33,
@@ -38,7 +44,7 @@ def main():
       for _ in range(3):
         for pump_no, amount in test_order.items():
           pump.pump_oz(pump_no, amount)
-        #motor.turn()
+        motor.turn()
       break
     else:
       # get the drink orders from the web app
@@ -58,7 +64,7 @@ def main():
           pump.pump_oz(pump_no, amount)
         
         # finally, rotate the platter
-        #motor.turn()
+        motor.turn()
 
 if __name__ == "__main__":
   main()

@@ -22,10 +22,6 @@ class PumpController(object):
             raise Exception('pin_dict cannot be an empty dict')
         self.pin_map = pin_dict
 
-        # set up the RPi.GPIO stuff
-        io.setmode(io.BOARD)
-        io.setwarnings(False)
-
         # initialize GPIO pins
         for name, pin in self.pin_map.iteritems():
             io.setup(pin, io.OUT, io.PUD_DOWN, io.LOW)
@@ -75,7 +71,7 @@ class MotorController(object):
             raise Exception('TX and RX pins cannot be the same')
 
         # set up the pins
-        io.setup(self.tx_pin, io.OUT, io.PUD_DOWN, io.LOW)
+        io.setup(self.tx_pin, io.OUT, io.LOW)
         io.setup(self.rx_pin, io.IN)
 
     # sends a signal to the PiC to let it know that it needs
