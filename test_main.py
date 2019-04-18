@@ -29,7 +29,7 @@ def main():
   test_order = {'1': 1,
                 '2': 1,
                 '3': 1}
-  test = True
+  test = False
 
   # instantiate the controllers
   pump = PumpController(ingredients)
