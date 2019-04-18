@@ -2,8 +2,10 @@
 
 import requests
 import json
-from PumpController import PumpController
-from MotorController import MotorController
+#from PumpController import PumpController
+#from MotorController import MotorController
+from Controller import PumpController
+from Controller import MotorController
 
 def main():
   # first create the dictionary of the ingredients/pins
