@@ -38,7 +38,7 @@ class PumpController(object):
         # make sure that the pump_name is actually in the range of valid 
         # pump numbers
         if self.pin_map.get(pump_name) == None:
-            raise Exception('invalid pump name accessed')
+            raise Exception('invalid pump name accessed: ' + str(pump_name))
 
         io.output(self.pin_map[pump_name], io.HIGH)
         time.sleep(amount_of_liquid * self.SECS_PER_OZ)
