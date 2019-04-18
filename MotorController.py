@@ -7,6 +7,9 @@ NOTE: THIS CLASS DOES NOT CHECK THAT THE SPECIFIED PINS HAVE NOT BEEN
       USED FOR ANY OTHER FUNCTION
 '''
 class MotorController(object):
+    global io
+    global time
+
     '''
     Attributes:
         tx_pin: the pin number for the line on which the Pi
