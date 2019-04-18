@@ -86,9 +86,9 @@ class MotorController(object):
             raise Exception("No valid TX or RX pin has been set")
         
         # send the PiC the signal to turn the platter
-        io.output(self.tx_pin, io.HIGH)
-        time.sleep(0.5)
         io.output(self.tx_pin, io.LOW)
+        time.sleep(0.5)
+        io.output(self.tx_pin, io.HIGH)
 
         # do not return until the PiC says we can, or 5 secs pass
         io.wait_for_edge(self.rx_pin, io.GPIO_RISING, timeout=5000)
@@ -99,5 +99,5 @@ class MotorController(object):
         if self.tx_pin is None:
             raise Exception("No valid TX pin has been set")
         
-        io.output(self.tx_pin, io.LOW)
+        io.output(self.tx_pin, io.HIGH)
         return True

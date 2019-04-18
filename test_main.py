@@ -33,7 +33,6 @@ def main():
   URL = 'https://auto-bar.herokuapp.com/orders.json'
 
   while True:
-    motor.stop()
     if test:
       # make the same drink 3 times
       for _ in range(3):
