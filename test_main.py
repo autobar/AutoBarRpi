@@ -53,7 +53,7 @@ def main():
       print(str(user))
       user_input = str(raw_input('Enter DL: '))
       regex = re.compile(r'(?P<ID>\d{8})=\d{4}(?P<Birth_day>\d{8})')
-      user_id, user_dob = reg.findall(user_input)[0]
+      user_id, user_dob = regex.findall(user_input)[0]
       print str(user_i)
       print str(user_dob)
       input()
