@@ -11,9 +11,9 @@ class PumpController(object):
         pin_map: the list of the pin numbers that send the signals
                  to each of the relays controlling the pumps.
                  This data structure is simply a hash that will be
-                 used to get the pin number based on the name of 
-                 the ingedient. For example pin_map['vodka'], etc.,
-                 will return the pin number for the vodka pump.
+                 used to get the pin number based pump number as a
+                 string. For example pin_map['2'], etc.,
+                 will return the pin number for pump #2.
     '''
 
     def __init__(self, pin_dict={}):
@@ -22,7 +22,6 @@ class PumpController(object):
         self.pin_map = pin_dict
 
         # set up the RPi.GPIO stuff
-        #io.setmode(io.BOARD)
         io.setmode(io.BOARD)
         io.setwarnings(False)
 

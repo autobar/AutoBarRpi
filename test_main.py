@@ -1,24 +1,52 @@
+#!/usr/bin/python
+
+import requests
+import json
 from PumpController import PumpController
+from MotorController import MotorController
 
 def main():
   # first create the dictionary of the ingredients/pins
   ingredients = {
-    'vodka'  :  3,
-    'rum'    :  5,
-    'tequila':  7,
-    'water'  : 11,
-    'juice'  : 13,
-    'other'  : 15
+    '1': 33,
+    '2': 35,
+    '3': 37,
+    '4': 36,
+    '5': 38,
+    '6': 40
   }
 
-  # instantiate the PumpController
+  # and decide which pins are used for the motor control
+  tx_pin = 11
+  rx_pin = 13
+
+  # instantiate the controllers
   pump = PumpController(ingredients)
+  motor = MotorController(tx_pin, rx_pin)
 
-  # try pumping 20 mL worth of vodka
-  pump.pump_oz('vodka', 2)
-  print 'pumping complete'
+  # set up the connection to the web app
+  URL = 'https://auto-bar.herokuapp.com/orders.json'
 
+  while True:
+    response = requests.get(url=URL)
+    data = json.loads(response.content)
 
+    # validate that the user is overage
+    user = data[0]
+    # TODO: validate
+
+    # for each drink in the response
+    for drink in data[1:]:
+      # pump each of the liquors
+      for pump_no, amount in drink["liquors"].items():
+        PC.pump_oz(pump_no, amount)
+      
+      # then pump each of the mixers
+      for pump_no, amount in drink["mixers"].items():
+        PC.pump_oz(pump_no, amount)
+      
+      # finally, rotate the platter
+      motor.turn()
 
 if __name__ == "__main__":
   main()
