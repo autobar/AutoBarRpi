@@ -43,8 +43,8 @@ def main():
       for pump_no, amount in drink.items():
         pump.pump_oz(pump_no, amount)
       
-    # finally, rotate the platter
-    motor.turn()
+      # finally, rotate the platter
+      motor.turn()
 
 if __name__ == "__main__":
   main()
