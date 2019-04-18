@@ -39,7 +39,7 @@ def main():
 
     # for each drink in the response
     for drink in data[1:]:
-      # pump each of the liquors
+      # pump each of the liquids
       for pump_no, amount in drink.items():
         pump.pump_oz(pump_no, amount)
       

@@ -90,7 +90,7 @@ class MotorController(object):
         
         # send the PiC the signal to turn the platter
         io.output(self.tx_pin, io.HIGH)
-        time.sleep(0.5)
+        time.sleep(0.1)
         io.output(self.tx_pin, io.LOW)
 
         # do not return until the PiC says we can
