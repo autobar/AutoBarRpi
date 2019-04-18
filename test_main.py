@@ -49,7 +49,7 @@ def main():
     else:
       # get the drink orders from the web app
       response = requests.get(url=URL)
-      while response is '':
+      while response.content is '':
         response = requests.get(url=URL)
       data = json.loads(response.content)
 
