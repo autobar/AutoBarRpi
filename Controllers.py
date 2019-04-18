@@ -71,8 +71,11 @@ class MotorController(object):
             raise Exception('TX and RX pins cannot be the same')
 
         # set up the pins
-        io.setup(self.tx_pin, io.OUT, io.LOW)
+        io.setup(self.tx_pin, io.OUT)
         io.setup(self.rx_pin, io.IN)
+
+        # initialize the pins
+        io.output(self.tx_pin, io.LOW)
 
     # sends a signal to the PiC to let it know that it needs
     # to turn the rotating platter. then it waits until it

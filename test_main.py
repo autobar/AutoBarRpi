@@ -11,7 +11,7 @@ def main():
   # set up the RPi.GPIO stuff
   io.setmode(io.BOARD)
   io.setwarnings(False)
-  
+
   # first create the dictionary of the ingredients/pins
   ingredients = {
     '1': 33,
@@ -23,7 +23,7 @@ def main():
   }
 
   # and decide which pins are used for the motor control
-  tx_pin = 11
+  tx_pin = 29
   rx_pin = 13
 
   test_order = {'1': 1,
