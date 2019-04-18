@@ -2,6 +2,7 @@
 
 import requests
 import json
+from readDL import readDL
 from Controllers import PumpController
 from Controllers import MotorController
 
@@ -49,7 +50,12 @@ def main():
 
       # validate that the user is overage
       user = data[0]
-      # TODO: validate
+      keylogger = readDL()
+      if keylogger["ID"] == user["drivers_license"]:
+        # NOTE: this currently uses a hard-coded date for today
+        if not keylogger["BirthDay"] >= 19980418:
+          print('Underaged user: drink order canceled')
+          continue
 
       # for each drink in the response
       for drink in data[1:]:
