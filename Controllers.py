@@ -5,6 +5,7 @@ class PumpController(object):
 
     ''' Constants: '''
     SECS_PER_OZ = 2 # this needs to be calculated experimentally
+    # TODO: fix ^
 
     '''
     Attributes:
