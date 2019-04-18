@@ -1,17 +1,11 @@
 #!/usr/bin/python
 
-import RPi.GPIO as io
-import time
 import requests
 import json
 from Controllers import PumpController
 from Controllers import MotorController
 
 def main():
-  # set up the RPi.GPIO stuff
-  io.setmode(io.BOARD)
-  io.setwarnings(False)
-
   # first create the dictionary of the ingredients/pins
   ingredients = {
     '1': 33,
