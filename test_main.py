@@ -38,24 +38,24 @@ def main():
         pump.pump_oz(pump_no, amount, motor)
       motor.turn()
     else:
-      # TODO: handle case where there is no JSON to parse on second line
+      # get the drink orders from the web app
       response = requests.get(url=URL)
       while response is '':
         response = requests.get(url=URL)
       data = json.loads(response.content)
 
-    # validate that the user is overage
-    user = data[0]
-    # TODO: validate
+      # validate that the user is overage
+      user = data[0]
+      # TODO: validate
 
-    # for each drink in the response
-    for drink in data[1:]:
-      # pump each of the liquids
-      for pump_no, amount in drink.items():
-        pump.pump_oz(pump_no, amount, motor)
-      
-      # finally, rotate the platter
-      motor.turn()
+      # for each drink in the response
+      for drink in data[1:]:
+        # pump each of the liquids
+        for pump_no, amount in drink.items():
+          pump.pump_oz(pump_no, amount, motor)
+        
+        # finally, rotate the platter
+        motor.turn()
 
 if __name__ == "__main__":
   main()
