@@ -41,7 +41,7 @@ def main():
     for drink in data[1:]:
       # pump each of the liquids
       for pump_no, amount in drink.items():
-        pump.pump_oz(pump_no, amount)
+        pump.pump_oz(pump_no, amount, motor)
       
       # finally, rotate the platter
       motor.turn()

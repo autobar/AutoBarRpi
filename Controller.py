@@ -30,7 +30,12 @@ class PumpController(object):
             io.setup(pin, io.OUT, io.PUD_DOWN)
             io.output(pin, io.LOW)
 
-    def pump_oz(self, pump_name, amount_of_liquid):
+    def pump_oz(self, pump_name, amount_of_liquid, motor=None):
+        # under test: try to force the motor off
+        if motor is not None:
+            if motor.tx_pin is not None:
+                io.output(motor.tx_pin, io.LOW)
+
         # make sure that parameters are correct types
         pump_name = str(pump_name)
         amount_of_liquid = int(amount_of_liquid)
