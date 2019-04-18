@@ -40,11 +40,7 @@ def main():
     # for each drink in the response
     for drink in data[1:]:
       # pump each of the liquors
-      for pump_no, amount in drink["liquors"].items():
-        PC.pump_oz(pump_no, amount)
-      
-      # then pump each of the mixers
-      for pump_no, amount in drink["mixers"].items():
+      for pump_no, amount in drink.items():
         PC.pump_oz(pump_no, amount)
       
       # finally, rotate the platter
