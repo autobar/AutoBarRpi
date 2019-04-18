@@ -51,8 +51,12 @@ def main():
       # validate that the user is overage
       user = data[0]
       print(str(user))
-      user_id = str(input('Enter DL: '))
-      
+      user_input = str(raw_input('Enter DL: '))
+      regex = re.compile(r'(?P<ID>\d{8})=\d{4}(?P<Birth_day>\d{8})')
+      user_id, user_dob = reg.findall(user_input)[0]
+      print str(user_i)
+      print str(user_dob)
+      input()
 
       # for each drink in the response
       for drink in data[1:]:
