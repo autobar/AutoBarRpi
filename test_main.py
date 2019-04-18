@@ -66,10 +66,10 @@ def main():
       print(str(user))
 
       if not is_overage(user_dob):
-        print('Underage user: drink order canceled')
+        print('Drink order canceled: underage user')
         continue
       elif user_id != user['drivers_license']:
-        print('This drivers license was not used to order this drink')
+        print('Drink order canceled: this drivers license was not used to order this drink')
         continue
 
       # for each drink in the response
