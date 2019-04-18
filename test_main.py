@@ -22,6 +22,11 @@ def main():
   tx_pin = 11
   rx_pin = 13
 
+  test_order = {'1': 1,
+                '2': 1,
+                '3': 1}
+  test = True
+
   # instantiate the controllers
   pump = PumpController(ingredients)
   motor = MotorController(tx_pin, rx_pin)
@@ -30,8 +35,13 @@ def main():
   URL = 'https://auto-bar.herokuapp.com/orders.json'
 
   while True:
-    response = requests.get(url=URL)
-    data = json.loads(response.content)
+    if test:
+      for pump_no, amount in test_order.items():
+        pump.pump_oz(pump_no, amount, motor)
+      motor.turn()
+    else:
+      response = requests.get(url=URL)
+      data = json.loads(response.content)
 
     # validate that the user is overage
     user = data[0]
