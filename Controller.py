@@ -27,7 +27,7 @@ class PumpController(object):
 
         # initialize GPIO pins
         for name, pin in self.pin_map.iteritems():
-            io.setup(pin, io.OUT)
+            io.setup(pin, io.OUT, io.PUD_DOWN)
             io.output(pin, io.LOW)
 
     def pump_oz(self, pump_name, amount_of_liquid):
@@ -75,7 +75,7 @@ class MotorController(object):
             raise Exception('TX and RX pins cannot be the same')
 
         # set up the pins
-        io.setup(self.tx_pin, io.OUT)
+        io.setup(self.tx_pin, io.OUT, io.PUD_DOWN)
         io.setup(self.rx_pin, io.IN)
 
         # initialize the pins
@@ -90,7 +90,7 @@ class MotorController(object):
         
         # send the PiC the signal to turn the platter
         io.output(self.tx_pin, io.HIGH)
-        time.sleep(0.1)
+        time.sleep(0.5)
         io.output(self.tx_pin, io.LOW)
 
         # do not return until the PiC says we can
