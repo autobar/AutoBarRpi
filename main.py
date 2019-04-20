@@ -56,18 +56,43 @@ def main():
         response = requests.get(url=URL)
       data = json.loads(response.content)
 
-      # validate that the user is overage
+      # used in loop to find correct drivers license
       user = data[0]
-      user_input = str(raw_input('Enter DL: '))
       regex = re.compile(r'(?P<ID>\d{8})=\d{4}(?P<Birth_day>\d{8})')
-      user_id, user_dob = regex.findall(user_input)[0]
-      user_dob = datetime.datetime.strptime(user_dob, '%Y%m%d')
 
-      if not is_overage(user_dob):
-        print('Drink order canceled: underage user')
-        continue
-      elif user_id != user['drivers_license']:
-        print('Drink order canceled: this drivers license was not used to order this drink')
+      # use a flag
+      # => 0 means incorrect license number
+      # => 1 means success
+      # => 2 means underage user
+      flag = 0
+      while flag is 0:
+        # wait for the user to slide their drivers license
+        user_input = str(raw_input('Enter DL: '))
+        
+        # the below throws exceptions a lot, so be careful
+        # this is only needed because the card reader is not always reliable
+        try:
+          user_id, user_dob = regex.findall(user_input)[0]
+        except:
+          print('Invalid read of DL, try again')
+          continue
+        
+        # extract the user's date of birth
+        user_dob = datetime.datetime.strptime(user_dob, '%Y%m%d')
+
+        # validate that the user is overage
+        if not is_overage(user_dob):
+          print('Drink order canceled: underage user')
+          flag = 2
+          break
+        # validate that the user has the correct drivers license
+        elif user_id != user['drivers_license']:
+          print('Incorrect DL: this drivers license was not used to order this drink')
+        else:
+          flag = 1
+        
+      # if underage user, do not fill the order and move on to the next one
+      if flag is 2:
         continue
 
       # for each drink in the response
