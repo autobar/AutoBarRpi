@@ -51,17 +51,27 @@ def main():
       break
     else:
       # get the drink orders from the web app
+      # try up to 6 times to reach the web app
+      # if it is unreachable after that, then just terminate
+      tries = 0
       try:
         response = requests.get(url=URL)
+        tries += 1
       except:
         print('Unable to connect to the web app, check internet connection')
-        return 0
+        print('Trying again in 3 seconds...')
+        time.sleep(3)
       while response.content is '':
+        if tries > 5:
+          print('No internet connection: terminating program')
+          return 0
         try:
           response = requests.get(url=URL)
+          tries += 1
         except:
           print('Unable to connect to the web app, check internet connection')
-          return 0
+          print('Trying again in 3 seconds...')
+          time.sleep(3)
       data = json.loads(response.content)
 
       # used in loop to find correct drivers license
