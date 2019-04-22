@@ -51,9 +51,17 @@ def main():
       break
     else:
       # get the drink orders from the web app
-      response = requests.get(url=URL)
-      while response.content is '':
+      try:
         response = requests.get(url=URL)
+      except:
+        print('Unable to connect to the web app, check internet connection')
+        return 0
+      while response.content is '':
+        try:
+          response = requests.get(url=URL)
+        except:
+          print('Unable to connect to the web app, check internet connection')
+          return 0
       data = json.loads(response.content)
 
       # used in loop to find correct drivers license
@@ -96,6 +104,7 @@ def main():
         continue
 
       # for each drink in the response
+      print('Correct DL: making ' + str(len(data[1:])) + ' drinks!')
       for drink in data[1:]:
         # pump each of the liquids
         for pump_no, amount in drink.items():
@@ -105,6 +114,7 @@ def main():
         motor.turn()
 
       # reset the platter position
+      print('DEBUG: turning the platter ' + str(5 - len(data[1:])) + ' times')
       for _ in range(5 - len(data[1:])):
         motor.turn()
 
