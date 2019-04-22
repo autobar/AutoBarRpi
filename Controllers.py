@@ -95,6 +95,7 @@ class MotorController(object):
         # do not return until the PiC says we can
         while not io.input(self.rx_pin):
             pass
+        time.sleep(0.6)
         return True
 
     # tell the motor to stop turning

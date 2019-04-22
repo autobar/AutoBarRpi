@@ -114,7 +114,6 @@ def main():
         motor.turn()
 
       # reset the platter position
-      print('DEBUG: turning the platter ' + str(5 - len(data[1:])) + ' times')
       for _ in range(5 - len(data[1:])):
         motor.turn()
 
