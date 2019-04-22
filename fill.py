@@ -16,6 +16,6 @@ for pump in pumps:
 # pump the liquid until the enter button is pressed
 for pump in pumps:
     io.output(pump, io.HIGH)
-    input('Press <RETURN> while filled')
+    raw_input('Press <RETURN> while filled')
     io.output(pump, io.LOW)
     time.sleep(1)
