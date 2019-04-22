@@ -62,9 +62,9 @@ def main():
         print('Trying again in 3 seconds...')
         time.sleep(3)
       while response.content is '':
-        if tries > 5:
-          print('No internet connection: terminating program')
-          return 0
+        #if tries > 5:
+        #  print('No internet connection: terminating program')
+        #  return 0
         try:
           response = requests.get(url=URL)
           tries += 1
