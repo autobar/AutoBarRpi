@@ -104,5 +104,9 @@ def main():
         # finally, rotate the platter
         motor.turn()
 
+      # reset the platter position
+      for _ in range(5 - len(data[1:])):
+        motor.turn()
+
 if __name__ == "__main__":
   main()
